@@ -1,7 +1,7 @@
 /**
  * 
  */
-package alex.mj.marvelencyclopedia;
+package alex.mj.marvelencyclopedia.characters;
 
 /**
  * @author alejandro.marijuan@googlemail.com

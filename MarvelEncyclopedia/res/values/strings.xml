@@ -3,6 +3,8 @@
 
 <!-- NOMBRE+OPTIONS APP -->
     <string name="app_name">Marvel Encyclopedia</string>
+   	<string name="title_activity_character">Characters</string>
+   	<string name="title_activity_underconstruction">¡UNDER_CONSTRUCTION!</string>
     <string name="charactersOption">CHARACTERS</string>
 	<string name="comicsOption">COMICS</string>
 	<string name="creatorsOption">CREATORS</string>
