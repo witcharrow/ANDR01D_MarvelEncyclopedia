@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+
+<!-- NOMBRE+OPTIONS APP -->
+    <string name="app_name">Marvel Encyclopedia</string>
+    <string name="charactersOption">CHARACTERS</string>
+	<string name="comicsOption">COMICS</string>
+	<string name="creatorsOption">CREATORS</string>
+	<string name="eventsOption">EVENTS</string>
+	<string name="seriesOption">SERIES</string>
+	<string name="storiesOption">STORIES</string>
+	<string name="comming_soon">--Coming Soon--</string>
+	<string name="icon">icon</string>
+
+<!-- NAVIGATION DRAWER STRINGS -->
+    <string-array name="character_menu_options">
+        <item>PICTURE</item>
+        <item>DESCRIPTION</item>
+        <item>COMICS</item>
+        <item>SERIES</item>
+        <item>STORIES</item>
+        <item>EVENTS</item>
+        <item>URLS</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+
+<!-- CHARACTER STRINGS -->    
+    	<!-- LAYOUT ELEMENTS -->
+    <string name="BT_Search_Character">Buscar</string>
+    <string name="Character_Picture_Description">Character Picture</string>
+    <string name="action_settings">Settings</string>
+    <string name="no_conection_available">No hay conexión disponible - No network connection available.</string>
+    <string name="no_input_name">Introduzca un valor para la búsqueda</string>
+    <string name="invalid_url">Unable to retrieve web page. URL may be invalid.</string>
+    <string name="name_empty_error">Code cannot be empty</string>
+    <string name="NAME">Wolverine</string>
+    <string name="ID">1009718</string>
+    <string name="MODIFIED">2014&#8211;06&#8211;10T16:13:25&#8211;0400</string>
+    <string name="DESCRIPTION">Born with super-human senses and the power to heal from almost any wound, Wolverine was captured by a secret Canadian organization and given an unbreakable skeleton and claws. Treated like an animal, it took years for him to control himself. Now, he\'s a premiere member of both the X-Men and the Avengers.</string>
+    <string name="THUMBNAIL"></string>
+    <string name="connectionOK_noResultFound">Connection established, but no results found.</string>
+    <string name="connection_not_OK_noResultFound">Connection couldn\'t be established, no results found.</string>
+    <string name="without_id">--No id found for this character--</string>
+    <string name="without_name">--No name found for this character--</string>
+    <string name="without_modified_date">--No modified date found for this character--</string>
+    <string name="without_thumbnail">--No picture found for this character--</string>
+    <string name="without_description">--No description found for this character--</string>
+
+<!-- SUPERHEROES -->
+    <string-array name="list_of_heroes">
+        <item>Spider-Man</item>
+        <item>X-Men</item>
+        <item>Iron Man</item>
+        <item>Wolverine</item>
+        <item>Captain America</item>
+        <item>Hulk</item>
+        <item>Thor</item>
+        <item>Fantastic Four</item>
+        <item>Avengers</item>
+        <item>Daredevil</item>
+        <item>Human Torch</item>
+        <item>Cyclops</item>
+        <item>Storm</item>
+        <item>Beast</item>
+        <item>Colossus</item>
+        <item>Sub-Mariner</item>
+        <item>Archangel</item>
+        <item>Nightcrawler</item>
+        <item>Mr. Fantastic</item>
+        <item>Thing</item>
+        <item>Rogue</item>
+        <item>Doctor Strange</item>
+        <item>Iceman</item>
+        <item>Invisible Woman</item>
+        <item>Punisher</item>
+        <item>Deadpool</item>
+        <item>Silver Surfer</item>
+        <item>Black Panther</item>
+        <item>Captain Marvel (Carol Danvers)</item>
+        <item>Professor X</item>
+        <item>She-Hulk (Jennifer Walters)</item>
+        <item>Gambit</item>
+        <item>Black Widow</item>
+        <item>Cable</item>
+        <item>Nick Fury</item>
+        <item>Vision</item>
+        <item>Scarlet Witch</item>
+        <item>Psylocke</item>
+        <item>Magneto</item>
+        <item>Bishop</item>
+        <item>Cannonball</item>
+        <item>Havok</item>
+        <item>Wasp</item>
+        <item>Spider-Man (Ultimate)</item>
+        <item>X-Force</item>
+        <item>Emma Frost</item>
+        <item>Ghost Rider (Johnny Blaze)</item>
+        <item>Quicksilver</item>
+        <item>Hawkeye</item>
+        <item>New Mutants</item>
+        <item>Polaris</item>
+        <item>Hank Pym</item>
+        <item>Loki</item>
+        <item>Doctor Doom</item>
+        <item>Wonder Man</item>
+        <item>Defenders</item>
+        <item>Alpha Flight</item>
+        <item>Jubilee</item>
+        <item>Excalibur</item>
+        <item>Banshee</item>
+        <item>Sabretooth</item>
+        <item>Spider-Girl (May Parker)</item>
+        <item>Dazzler</item>
+        <item>Warpath</item>
+        <item>X-Men (Ultimate)</item>
+        <item>Sunspot</item>
+        <item>The Winter Soldier</item>
+        <item>Captain Marvel (Mar-Vell)</item>
+        <item>Juggernaut</item>
+        <item>Kitty Pryde</item>
+        <item>Thunderbolts</item>
+        <item>Odin</item>
+        <item>Banshee (Theresa Rourke)</item>
+        <item>Hercules</item>
+        <item>Two-Gun Kid</item>
+        <item>Sif</item>
+        <item>Nova</item>
+        <item>Norman Osborn</item>
+        <item>Iron Fist (Danny Rand)</item>
+        <item>Domino</item>
+        <item>Forge</item>
+        <item>Rawhide Kid</item>
+        <item>Mystique</item>
+        <item>Falcon</item>
+        <item>Red Skull</item>
+        <item>Moon Knight</item>
+        <item>Elektra</item>
+        <item>Exiles</item>
+        <item>Galactus</item>
+        <item>Adam Warlock</item>
+        <item>Luke Cage</item>
+        <item>X-Factor</item>
+        <item>J. Jonah Jameson</item>
+        <item>Kingpin</item>
+        <item>Quasar (Phyla-Vell)</item>
+        <item>Black Knight</item>
+        <item>Shatterstar</item>
+        <item>Spider-Woman (Jessica Drew)</item>
+        <item>X-Man</item>
+        <item>Lilandra</item>
+        <item>Captain Britain</item>
+        <item>Mary Jane Watson</item>
+    </string-array>
+</resources>
