@@ -1,40 +1,41 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#000000"
     android:orientation="horizontal"
-    android:padding="10dp" 
-    android:background="#000000">
+    android:padding="10dp" >
 
     <ImageView
         android:id="@+id/imgIcon"
-        android:layout_width="wrap_content"
+        android:layout_width="10dp"
         android:layout_height="fill_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/txtTitle"
         android:contentDescription="@string/icon"
-        android:gravity="center_vertical" />
+        android:gravity="left" />
+
+    <ImageView
+        android:id="@+id/imgIconBis"
+        android:layout_width="10dp"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/txtTitle"
+        android:contentDescription="@string/icon"
+        android:gravity="right" />
 
     <TextView
         android:id="@+id/txtTitle"
-        android:layout_width="fill_parent"
+        android:layout_width="152dp"
         android:layout_height="fill_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/imgIcon"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:textColor="#c20d1c"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold|italic" />
 
-    <TextView
-        android:id="@+id/txtSubTitle"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:textColor="#000000"
-        android:textSize="22sp"
-        android:textStyle="bold" />
-
-</LinearLayout>
+</RelativeLayout>

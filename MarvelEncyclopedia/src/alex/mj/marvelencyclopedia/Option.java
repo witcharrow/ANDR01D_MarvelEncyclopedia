@@ -10,13 +10,15 @@ package alex.mj.marvelencyclopedia;
 public class Option {
     public int icon;
     public String title;
+    public int iconBis;
     public Option(){
         super();
     }
     
-    public Option(int icon, String title) {
+    public Option(int icon, String title, int iconBis) {
         super();
         this.icon = icon;
         this.title = title;
+        this.iconBis= iconBis;
     }
 }

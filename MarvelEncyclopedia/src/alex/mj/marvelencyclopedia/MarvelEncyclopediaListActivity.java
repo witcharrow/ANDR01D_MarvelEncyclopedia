@@ -1,7 +1,10 @@
 package alex.mj.marvelencyclopedia;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +19,6 @@ import android.widget.TextView;
 public class MarvelEncyclopediaListActivity extends Activity {
 	
 	private static final String TAG = "MarvelEncyclopediaListActivity: --->";
-//	private EncyclopediaAdapter adapter;
 	private ListView listView1;
 	
 	/**
@@ -49,6 +51,7 @@ public class MarvelEncyclopediaListActivity extends Activity {
 	            holder = new OptionHolder();
 	            holder.imgIcon = (ImageView)row.findViewById(R.id.imgIcon);
 	            holder.txtTitle = (TextView)row.findViewById(R.id.txtTitle);
+	            holder.imgIconBis = (ImageView)row.findViewById(R.id.imgIconBis);
 	            
 	            row.setTag(holder);
 	        }
@@ -57,15 +60,17 @@ public class MarvelEncyclopediaListActivity extends Activity {
 	        }
 	        
 	        Option Option = data[position];
-	        holder.txtTitle.setText(Option.title);
 	        holder.imgIcon.setImageResource(Option.icon);
+	        holder.txtTitle.setText(Option.title);
+	        holder.imgIconBis.setImageResource(Option.iconBis);
 	        
 	        return row;
 	    }
 	    
-	    class OptionHolder {
-	        ImageView imgIcon;
+	    class OptionHolder {	        
+			ImageView imgIcon;
 	        TextView txtTitle;
+	        ImageView imgIconBis;
 	    }
 	}
 	
@@ -74,25 +79,23 @@ public class MarvelEncyclopediaListActivity extends Activity {
     	Log.d(TAG, "onCreate()") ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview_main);
-        
+        //CAMBIAMOS EL COLOR DE LA BARRA DE TITULO
+        ActionBar bar = getActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#c20d1c")));
+        //RELLENAMOS LAS OPCIONES DEL MENÚ
         Option Option_data[] = new Option[]{
-            new Option(R.drawable.spidey, (String) getResources().getText(R.string.charactersOption)),
-            new Option(R.drawable.xmen, (String) getResources().getText(R.string.comicsOption)),
-            new Option(R.drawable.capi_shield, (String) getResources().getText(R.string.creatorsOption)),
-            new Option(R.drawable.shield, (String) getResources().getText(R.string.eventsOption)),
-            new Option(R.drawable.f4, (String) getResources().getText(R.string.seriesOption)),
-            new Option(R.drawable.avengers, (String) getResources().getText(R.string.storiesOption))
-        };
-        
+            new Option(R.drawable.spidey, (String) getResources().getText(R.string.charactersOption),R.drawable.spidey),
+            new Option(R.drawable.xmen, (String) getResources().getText(R.string.comicsOption),R.drawable.xmen),
+            new Option(R.drawable.capi_shield, (String) getResources().getText(R.string.creatorsOption),R.drawable.capi_shield),
+            new Option(R.drawable.shield, (String) getResources().getText(R.string.eventsOption),R.drawable.shield),
+            new Option(R.drawable.f4, (String) getResources().getText(R.string.seriesOption),R.drawable.f4),
+            new Option(R.drawable.avengers, (String) getResources().getText(R.string.storiesOption),R.drawable.avengers)
+        };        
         OptionAdapter adapter = new OptionAdapter(this, 
                 R.layout.listview_item_row_marvel_encyclopedia, Option_data);
-        
-        
         listView1 = (ListView)findViewById(R.id.listView1);
-         
         View header = (View)getLayoutInflater().inflate(R.layout.listview_header_row_marvel_encyclopedia, null);
         listView1.addHeaderView(header);
-        
         listView1.setAdapter(adapter);
     }
 
