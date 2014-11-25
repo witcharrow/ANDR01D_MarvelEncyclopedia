@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@drawable/cover_charactersearcher"
+    android:orientation="vertical"
+    android:id="@+id/RelativeLayoutCHARACTER_SEARCH" >
+
+    <ImageButton
+        android:id="@+id/BT_Search_Character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/selectHeroe"
+        android:contentDescription="@string/icon"
+        android:src="@drawable/action_search" />
+
+    <AutoCompleteTextView
+        android:id="@+id/selectHeroe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="115dp"
+        android:layout_toLeftOf="@+id/BT_Search_Character"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:gravity="center|center_horizontal"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" >
+
+        <requestFocus />
+    </AutoCompleteTextView>
+
+</RelativeLayout>

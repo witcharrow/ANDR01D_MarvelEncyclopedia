@@ -8,11 +8,14 @@ import alex.mj.marvelencyclopedia.R;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -117,21 +120,34 @@ public class CharacterActivity extends Activity {
 				Toast.makeText(getBaseContext(), "id:"+id, Toast.LENGTH_LONG)
 						.show();
 				// Creamos el Intent para lanzar la Activity CharacterActivity
-//				Intent intent = null;
-//				switch(position){
-//				case 1:
-//					intent = new Intent(getBaseContext(),CharacterActivity.class);  
-//					break;
-//				case 2:
-//					intent = new Intent(getBaseContext(),UnderConstructionActivity.class);  
-//					break;				
-//				}
-				
-				// ##Lanzamos la Activity con el Intent creado a TravelActivity
-//				startActivity(intent);//				
+				Intent intent = null;
+				switch(position){
+				case 1:
+					intent = new Intent(getBaseContext(),CharacterSeacherActivity.class);  
+					break;
+				case 2:
+					intent = new Intent(getBaseContext(),CharacterFavoritesActivity.class);  
+					break;				
+				}				
+				// ##Lanzamos la Activity con el Intent creado.
+				startActivity(intent);	
 			}
 
 		});
+		
+		//AÑADIMOS LA OPCIÓN DE NAVIGATION UP
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    // Respond to the action bar's Up/Home button
+	    case android.R.id.home:
+	        NavUtils.navigateUpFromSameTask(this);
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
 	}
 
 }

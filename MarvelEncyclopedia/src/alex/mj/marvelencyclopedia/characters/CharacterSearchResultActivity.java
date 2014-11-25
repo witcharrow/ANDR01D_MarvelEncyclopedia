@@ -1,7 +1,7 @@
 /**
  * 
  */
-package alex.mj.marvelencyclopedia.comics;
+package alex.mj.marvelencyclopedia.characters;
 
 import alex.mj.marvelencyclopedia.R;
 import android.app.ActionBar;
@@ -15,10 +15,10 @@ import android.view.MenuItem;
 
 /**
  * @author alejandro.marijuan@googlemail.com
- * 
+ *
  */
-public class UnderConstructionActivity extends Activity {
-
+public class CharacterSearchResultActivity extends Activity{
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
