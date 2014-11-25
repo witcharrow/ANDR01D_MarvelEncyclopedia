@@ -25,24 +25,42 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 
 
 /**
  * @author alejandro.marijuan@googlemail.com
- * @param <ActionBarDrawerToggle>
+ * @param
  * 
  */
 public class CharacterSearchResultActivity extends Activity {
+   
+	
+	private static final String TAG = "***CharacterSearchResultActivity";
+	private String[] mDataHeroe;
+	
+	// ****Navigation Drawer variables*****//
 	private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mOptionCharacterResultTitles;
-	private String mNameToSearch;
+
+	// *****CHARACTER DATA*****//
+	private static String CHARACTER_id = "";
+	private static String CHARACTER_name = "";
+	private static String CHARACTER_description = "";
+	private static String CHARACTER_modified = "";
+	private static String CHARACTER_thumbnail_url = "";
+	private static String CHARACTER_thumbnail_extension = "";
+	private static TextView mNAME;
+	private static TextView mID;
+	private static TextView mMODIFIED;
+	private static TextView mDESCRIPTION;
+	private static ImageView mTHUMBNAIL;
+	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +69,12 @@ public class CharacterSearchResultActivity extends Activity {
 		// CAMBIAMOS EL COLOR DE LA BARRA DE TITULO
 		ActionBar bar = getActionBar();
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#c20d1c")));
-		Intent intent = getIntent();
-		mNameToSearch = intent.getExtras().getString("nameToSearch");
-		Toast.makeText(CharacterSearchResultActivity.this, mNameToSearch, Toast.LENGTH_SHORT).show();		
+		
 
-        mTitle = mDrawerTitle = getTitle();
+		Intent intent = getIntent();
+		mDataHeroe = intent.getExtras().getStringArray("CharacterValues");
+
+		mTitle = mDrawerTitle = getTitle();
         mOptionCharacterResultTitles = getResources().getStringArray(R.array.character_menu_options);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.right_drawer);
@@ -91,13 +110,32 @@ public class CharacterSearchResultActivity extends Activity {
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
+        
+		setData(mDataHeroe);
+        
         if (savedInstanceState == null) {
             selectItem(0);
         }
     }
 
-    /*@Override
+    /**
+     * @param mDataHeroe2 
+	 * 
+	 */
+	private void setData(String[] mDataHeroe2) {
+		Log.d(TAG, "setData()");
+		for (String data:mDataHeroe2){
+			Log.d(TAG,data);
+		}		
+		CHARACTER_id = mDataHeroe2[0];
+		CHARACTER_name = mDataHeroe2[1];
+		CHARACTER_description = mDataHeroe2[2];
+		CHARACTER_modified = mDataHeroe2[3];
+		CHARACTER_thumbnail_url = mDataHeroe2[4];
+		CHARACTER_thumbnail_extension = mDataHeroe2[5];	
+	}
+
+	/*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_marvel_encyclopedia, menu);
@@ -140,12 +178,12 @@ public class CharacterSearchResultActivity extends Activity {
 
     /* The click listener for ListView in the navigation drawer */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        private static final String DEBUG_TAG = "CharacterActivity--DrawerItemClickListener";
+        private static final String TAG = "CharacterActivity--DrawerItemClickListener";
 
 		@Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             selectItem(position);
-            Log.d(DEBUG_TAG,"Hola position:"+position);            
+            Log.d(TAG,"Hola position:"+position);            
         }
     }
 
@@ -216,10 +254,18 @@ public class CharacterSearchResultActivity extends Activity {
                      break;
             case 1:
             	rootView = inflater.inflate(R.layout.view_charactersearchresult_fragment_character_description, container, false);
+            	mID=(TextView) rootView.findViewById(R.id.textViewID);
+            	mMODIFIED=(TextView) rootView.findViewById(R.id.textViewMODIFIED);
+            	mNAME = (TextView) rootView.findViewById(R.id.textViewNAME);
+        		mDESCRIPTION = (TextView) rootView.findViewById(R.id.textViewDESCRIPTION);
+            	mID.setText(CHARACTER_id);
+        		mMODIFIED.setText(CHARACTER_modified);
+        		mNAME.setText(CHARACTER_name);
+        		mDESCRIPTION.setText(CHARACTER_description);
             	break;
          
             }
-            getActivity().setTitle("Wolverine"+ "' s " + option);
+            getActivity().setTitle(CHARACTER_name+ "' s " + option);
             return rootView;
         }
     }
