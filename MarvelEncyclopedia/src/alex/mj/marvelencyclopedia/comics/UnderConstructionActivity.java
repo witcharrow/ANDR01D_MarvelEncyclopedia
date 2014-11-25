@@ -20,7 +20,7 @@ public class UnderConstructionActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.listview_main_underconstruction);
+		setContentView(R.layout.listview_underconstruction_main);
 		// CAMBIAMOS EL COLOR DE LA BARRA DE TITULO
 		ActionBar bar = getActionBar();
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#c20d1c")));

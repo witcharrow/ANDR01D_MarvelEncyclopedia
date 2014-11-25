@@ -11,6 +11,6 @@
         android:layout_height="match_parent"
         android:background="#000000"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/marveltitle" />
+        android:src="@drawable/cover_marveltitle" />
      
 </LinearLayout>

@@ -7,7 +7,7 @@
     android:background="#000000"> 
     
      <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/listView1_CHARACTER"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center"

@@ -84,30 +84,30 @@ public class MarvelEncyclopediaListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d(TAG, "onCreate()");
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.listview_main_marvel_encyclopedia);
+		setContentView(R.layout.listview_marvel_encyclopedia_main);
 		// CAMBIAMOS EL COLOR DE LA BARRA DE TITULO
 		ActionBar bar = getActionBar();
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#c20d1c")));
 		// RELLENAMOS LAS OPCIONES DEL MENÚ
 		Option Option_data[] = new Option[] {
-				new Option(R.drawable.spidey, (String) getResources().getText(
-						R.string.charactersOption), R.drawable.spidey),
-				new Option(R.drawable.xmen, (String) getResources().getText(
-						R.string.comicsOption), R.drawable.xmen),
-				new Option(R.drawable.capi_shield, (String) getResources()
-						.getText(R.string.creatorsOption),
-						R.drawable.capi_shield),
-				new Option(R.drawable.shield, (String) getResources().getText(
-						R.string.eventsOption), R.drawable.shield),
-				new Option(R.drawable.f4, (String) getResources().getText(
-						R.string.seriesOption), R.drawable.f4),
-				new Option(R.drawable.avengers, (String) getResources()
-						.getText(R.string.storiesOption), R.drawable.avengers) };
+				new Option(R.drawable.icon_spidey, (String) getResources().getText(
+						R.string.main_charactersOption), R.drawable.icon_spidey),
+				new Option(R.drawable.icon_xmen, (String) getResources().getText(
+						R.string.main_comicsOption), R.drawable.icon_xmen),
+				new Option(R.drawable.icon_capi_shield, (String) getResources()
+						.getText(R.string.main_creatorsOption),
+						R.drawable.icon_capi_shield),
+				new Option(R.drawable.icon_shield, (String) getResources().getText(
+						R.string.main_eventsOption), R.drawable.icon_shield),
+				new Option(R.drawable.icon_f4, (String) getResources().getText(
+						R.string.main_seriesOption), R.drawable.icon_f4),
+				new Option(R.drawable.icon_avengers, (String) getResources()
+						.getText(R.string.main_storiesOption), R.drawable.icon_avengers) };
 		OptionAdapter adapter = new OptionAdapter(this,
-				R.layout.listview_item_row_marvel_encyclopedia, Option_data);
-		listView1 = (ListView) findViewById(R.id.listView1);
+				R.layout.listview_common_item_row, Option_data);
+		listView1 = (ListView) findViewById(R.id.listView1_MAIN);
 		View header = (View) getLayoutInflater().inflate(
-				R.layout.listview_header_row_marvel_encyclopedia, null);
+				R.layout.listview_marvel_encyclopedia_header_row, null);
 		listView1.addHeaderView(header);
 		listView1.setAdapter(adapter);
 
