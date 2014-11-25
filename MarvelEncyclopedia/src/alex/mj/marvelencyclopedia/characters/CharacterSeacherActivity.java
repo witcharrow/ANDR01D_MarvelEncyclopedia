@@ -4,7 +4,6 @@
 package alex.mj.marvelencyclopedia.characters;
 
 import alex.mj.marvelencyclopedia.R;
-import android.R.color;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -24,9 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**

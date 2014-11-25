@@ -19,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MarvelEncyclopediaListActivity extends Activity {
 
@@ -117,8 +116,7 @@ public class MarvelEncyclopediaListActivity extends Activity {
 					int position, long id) {
 				
 
-				Toast.makeText(getBaseContext(), "id:"+id, Toast.LENGTH_LONG)
-						.show();
+				Log.d(TAG, "id:"+id);
 				// Creamos el Intent para lanzar la Activity CharacterActivity
 				Intent intent = null;
 				switch(position){

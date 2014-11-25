@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -23,10 +24,10 @@ import android.widget.ListView;
 public class CharacterFavoritesActivity extends Activity{
 	
 	private static final String TAG = "CharacterFavoritesActivity: --->";
-	private ListView listView1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d(TAG,"onCreate()");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listview_underconstruction_main);
 		// CAMBIAMOS EL COLOR DE LA BARRA DE TITULO
@@ -38,6 +39,7 @@ public class CharacterFavoritesActivity extends Activity{
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.d(TAG,"onCreateOptionsMenu()");
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_marvel_encyclopedia, menu);
 		return true;
