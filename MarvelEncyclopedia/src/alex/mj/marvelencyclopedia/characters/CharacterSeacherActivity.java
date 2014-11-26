@@ -26,7 +26,6 @@ import android.text.TextUtils;
 import android.util.JsonReader;
 import android.util.JsonToken;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
