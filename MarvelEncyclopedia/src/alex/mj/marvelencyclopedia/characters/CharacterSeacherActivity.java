@@ -8,15 +8,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 
 import alex.mj.marvelencyclopedia.R;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
@@ -37,7 +34,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -71,11 +67,6 @@ public class CharacterSeacherActivity extends Activity{
 	private static final String GET_STRING_DATA = MARVEL_URL + CHARACTERS + TS
 			+ PUBLIC_API_KEY + HASH_MD5;
 	private static String THUMBNAIL_URL = "";
-	// private ProgressBar progressBar;
-	private TextView mNAME;
-	private TextView mID;
-	private TextView mMODIFIED;
-	private TextView mDESCRIPTION;
 	private ImageView mTHUMBNAIL;
 	private String mNameToSearch;
 
@@ -138,13 +129,6 @@ public class CharacterSeacherActivity extends Activity{
 		});
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main_marvel_encyclopedia, menu);
-		return true;
-	}
-
 	/**
 	 * When user clicks button, calls AsyncTask. Before attempting to fetch the
 	 * URL, makes sure that there is a network connection.
@@ -161,7 +145,7 @@ public class CharacterSeacherActivity extends Activity{
 			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 			if (networkInfo != null && networkInfo.isConnected()) {
 				// fetch data
-				Toast.makeText(CharacterSeacherActivity.this, "Tenemos Conexion",
+				Toast.makeText(CharacterSeacherActivity.this, getResources().getText(R.string.conection_available),
 						Toast.LENGTH_SHORT).show();
 				Log.d(TAG, "URL is: " + GET_STRING_DATA + "&name="
 						+ mNameToSearch);
@@ -173,10 +157,6 @@ public class CharacterSeacherActivity extends Activity{
 						CharacterSeacherActivity.this,
 						getResources().getText(R.string.no_conection_available),
 						Toast.LENGTH_SHORT).show();
-				mID.setText("");
-				mNAME.setText(R.string.connection_not_OK_noResultFound);
-				mDESCRIPTION.setText("");
-				mMODIFIED.setText("");
 			}
 		} else
 			Toast.makeText(CharacterSeacherActivity.this,
@@ -244,17 +224,13 @@ public class CharacterSeacherActivity extends Activity{
 		private CharacterInfo mInfoCharacter;
 
 		/**
-		 * TODO: no chusca, preguntar por qué, demasiado rápido??
-		 * 
+		 *  
 		 * @see android.os.AsyncTask#onPreExecute()
 		 */
 		@Override
 		protected void onPreExecute() {
 			Log.d(TAG, "onPreExecute()");
 			super.onPreExecute();
-			// Showing progress dialog
-			// progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-			// progressBar.setVisibility(View.VISIBLE);
 		}
 
 		@Override
@@ -322,7 +298,6 @@ public class CharacterSeacherActivity extends Activity{
 			showResults.putExtra("CharacterValues", characterValues);			
 			// ##Lanzamos la Activity con el Intent creado.
 			startActivity(showResults);
-			// showResult(result);
 		}
 
 		/**
@@ -527,71 +502,6 @@ public class CharacterSeacherActivity extends Activity{
 					+ mInfoCharacter.getThumbnail_extension();
 
 			return mInfoCharacter;
-		}
-	}
-
-	private class GetXMLTask extends AsyncTask<String, Void, Bitmap> {
-		@Override
-		protected Bitmap doInBackground(String... urls) {
-			Log.d(TAG, "GetXMLTask--doInBackground()");
-			Bitmap map = null;
-			for (String url : urls) {
-				map = downloadImage(url);
-				Log.d(TAG, "url: " + url);
-			}
-			return map;
-		}
-
-		// Sets the Bitmap returned by doInBackground
-		@Override
-		protected void onPostExecute(Bitmap result) {
-			Log.d(TAG, "GetXMLTask--onPostExecute()");
-			mTHUMBNAIL.setImageBitmap(result);
-		}
-
-		// Creates Bitmap from InputStream and returns it
-		private Bitmap downloadImage(String url) {
-			Log.d(TAG, "GetXMLTask--downloadImage()");
-			Bitmap bitmap = null;
-			InputStream stream = null;
-			BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-			bmOptions.inSampleSize = 1;
-
-			try {
-				stream = getHttpConnection(url);
-				bitmap = BitmapFactory.decodeStream(stream, null, bmOptions);
-				stream.close();
-			} catch (IOException e1) {
-				Log.e(TAG, "Error al descargar la imagen: " + url + "--"
-						+ e1);
-				e1.printStackTrace();
-			}
-			return bitmap;
-		}
-
-		// Makes HttpURLConnection and returns InputStream
-		private InputStream getHttpConnection(String urlString)
-				throws IOException {
-			Log.d(TAG, "GetXMLTask--getHttpConnection()");
-			InputStream stream = null;
-			Log.e(TAG, "urlString: " + urlString);
-			URL url = new URL(urlString);
-			URLConnection connection = url.openConnection();
-
-			try {
-				HttpURLConnection httpConnection = (HttpURLConnection) connection;
-				httpConnection.setRequestMethod("GET");
-				httpConnection.connect();
-
-				if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-					stream = httpConnection.getInputStream();
-				}
-			} catch (Exception ex) {
-				Log.e(TAG, "Error al conectar con la imagen: "
-						+ urlString + "--" + ex);
-				ex.printStackTrace();
-			}
-			return stream;
 		}
 	}
 	

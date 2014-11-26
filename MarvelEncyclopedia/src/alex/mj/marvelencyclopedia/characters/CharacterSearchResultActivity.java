@@ -3,6 +3,12 @@
  */
 package alex.mj.marvelencyclopedia.characters;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+
 import alex.mj.marvelencyclopedia.R;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -10,8 +16,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -47,6 +56,8 @@ public class CharacterSearchResultActivity extends Activity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mOptionCharacterResultTitles;
+	private static String THUMBNAIL_URL_SMALL;
+	private static String THUMBNAIL_URL_UNCANNY;
 
 	// *****CHARACTER DATA*****//
 	private static String CHARACTER_id = "";
@@ -59,10 +70,8 @@ public class CharacterSearchResultActivity extends Activity {
 	private static TextView mID;
 	private static TextView mMODIFIED;
 	private static TextView mDESCRIPTION;
-	private static ImageView mTHUMBNAIL;
 	
-
-    @Override
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_characterresult_main);
@@ -95,7 +104,7 @@ public class CharacterSearchResultActivity extends Activity {
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
                 mDrawerLayout,         /* DrawerLayout object */
-                R.drawable.portrait_small,  /* nav drawer image to replace 'Up' caret TODO:aqui va la foto obtenida /portrait_small.jpg*/
+                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret*/
                 R.string.drawer_open,  /* "open drawer" description for accessibility */
                 R.string.drawer_close  /* "close drawer" description for accessibility */
                 ) {
@@ -133,6 +142,9 @@ public class CharacterSearchResultActivity extends Activity {
 		CHARACTER_modified = mDataHeroe2[3];
 		CHARACTER_thumbnail_url = mDataHeroe2[4];
 		CHARACTER_thumbnail_extension = mDataHeroe2[5];	
+		THUMBNAIL_URL_UNCANNY = CHARACTER_thumbnail_url + "/portrait_uncanny."+ CHARACTER_thumbnail_extension;
+		THUMBNAIL_URL_SMALL = CHARACTER_thumbnail_url + "/portrait_small."+ CHARACTER_thumbnail_extension;
+
 	}
 
 	/*@Override
@@ -233,6 +245,9 @@ public class CharacterSearchResultActivity extends Activity {
      */
     public static class CharacterFragment extends Fragment {
         public static final String ARG_OPTION_CHARACTER_RESULT = "option_number";
+		private LayoutInflater mInflater;
+		private ViewGroup mContainer;
+		public View rootView;
 
         public CharacterFragment() {
             // Empty constructor required for fragment subclasses
@@ -241,17 +256,18 @@ public class CharacterSearchResultActivity extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = null;
+//            View rootView = null;
             int i = getArguments().getInt(ARG_OPTION_CHARACTER_RESULT);
 //            String option = getResources().getStringArray(R.array.character_menu_options)[i];
             String option = getResources().getStringArray(R.array.character_menu_options)[i];
             Log.d("OptionCharacterResultFragment","i("+i+"option("+option+")");
             //int imageId = getResources().getIdentifier(option.toLowerCase(Locale.getDefault()),"drawable", getActivity().getPackageName());
             switch (i) {
-            case 0:  
+            case 0:              	
             	rootView = inflater.inflate(R.layout.view_charactersearchresult_fragment_character_picture, container, false);
-            	((ImageView) rootView.findViewById(R.id.image)).setImageDrawable(getResources().getDrawable(R.drawable.portrait_uncanny));
-                     break;
+            	showResult(rootView);
+            	
+                break;
             case 1:
             	rootView = inflater.inflate(R.layout.view_charactersearchresult_fragment_character_description, container, false);
             	mID=(TextView) rootView.findViewById(R.id.textViewID);
@@ -263,10 +279,97 @@ public class CharacterSearchResultActivity extends Activity {
         		mNAME.setText(CHARACTER_name);
         		mDESCRIPTION.setText(CHARACTER_description);
             	break;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            	rootView = inflater.inflate(R.layout.view_charactersearchresult_fragment_character_picture, container, false);
+				((ImageView) rootView.findViewById(R.id.image)).setImageResource(R.drawable.cover_underconstruction);
+            	break;
          
             }
             getActivity().setTitle(CHARACTER_name+ "' s " + option);
             return rootView;
         }
+
+		/**
+		 * @param rootView 
+		 * 
+		 */
+		private void showResult(View rootView) {
+			// Create an object for subclass of AsyncTask
+			Log.d(TAG, "**showResult()--THUMBNAIL_URL:" + THUMBNAIL_URL_UNCANNY);
+			String[] url_images={THUMBNAIL_URL_UNCANNY};
+			new GetXMLTask().execute(url_images);			
+		}
+		
+
+		private class GetXMLTask extends AsyncTask<String, Void, Bitmap> {
+
+			@Override
+			protected Bitmap doInBackground(String... urls) {
+				Log.d(TAG, "GetXMLTask--doInBackground()");
+				Bitmap map = null;
+				for (String url : urls) {
+					map = downloadImage(url);
+					Log.d(TAG, "url: " + url);
+				}
+				return map;
+			}
+
+			// Sets the Bitmap returned by doInBackground
+			@Override
+			protected void onPostExecute(Bitmap result) {
+				Log.d(TAG, "GetXMLTask--onPostExecute()");				
+				((ImageView) rootView.findViewById(R.id.image)).setImageBitmap(result);
+			}
+
+			// Creates Bitmap from InputStream and returns it
+			private Bitmap downloadImage(String url) {
+				Log.d(TAG, "GetXMLTask--downloadImage()");
+				Bitmap bitmap = null;
+				InputStream stream = null;
+				BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+				bmOptions.inSampleSize = 1;
+
+				try {
+					stream = getHttpConnection(url);
+					bitmap = BitmapFactory.decodeStream(stream, null, bmOptions);
+					stream.close();
+				} catch (IOException e1) {
+					Log.e(TAG, "Error al descargar la imagen: " + url + "--"
+							+ e1);
+					e1.printStackTrace();
+				}
+				return bitmap;
+			}
+
+			// Makes HttpURLConnection and returns InputStream
+			private InputStream getHttpConnection(String urlString)
+					throws IOException {
+				Log.d(TAG, "GetXMLTask--getHttpConnection()");
+				InputStream stream = null;
+				Log.d(TAG, "urlString: " + urlString);
+				URL url = new URL(urlString);
+				URLConnection connection = url.openConnection();
+
+				try {
+					HttpURLConnection httpConnection = (HttpURLConnection) connection;
+					httpConnection.setRequestMethod("GET");
+					httpConnection.connect();
+
+					if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+						stream = httpConnection.getInputStream();
+					}
+				} catch (Exception ex) {
+					Log.e(TAG, "Error al conectar con la imagen: "
+							+ urlString + "--" + ex);
+					ex.printStackTrace();
+				}
+				return stream;
+			}
+		}
+
     }
 }
