@@ -333,6 +333,8 @@ public class CharacterSeacherActivity extends Activity{
 							mInfoCharacter.setDescription(getResources().getText(
 									R.string.connectionOK_noResultFound)
 									.toString());
+							mInfoCharacter.setThumbnail_url("http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available");
+							mInfoCharacter.setThumbnail_extension("jpg");
 						}
 					} else if (nameNode.equals(TAG_DATA)
 							&& reader.peek() != JsonToken.NULL) { // Nodo
