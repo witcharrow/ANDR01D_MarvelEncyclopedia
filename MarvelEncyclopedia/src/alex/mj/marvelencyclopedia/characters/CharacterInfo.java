@@ -9,6 +9,13 @@ package alex.mj.marvelencyclopedia.characters;
  */
 public class CharacterInfo {
 	
+	public static final String EXTRA_ID = "extra_id";
+	public static final String EXTRA_NAME = "extra_name";
+	public static final String EXTRA_DESCRIPTION = "extra_description";
+	public static final String EXTRA_MODIFIED = "extra_modified";
+	public static final String EXTRA_THUMBNAIL_URL = "extra_thumbnail_url";
+	public static final String EXTRA_THUMBNAIL_EXTENSION = "extra_thumbnail_extension";
+	
 	private String id;
 	private String name;
 	private String description;

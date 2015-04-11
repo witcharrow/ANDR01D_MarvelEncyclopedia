@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+  
+    <item android:id="@+id/menu_share_favorite"
+        android:title="@string/menu_share_favorite"
+        android:orderInCategory="100"        
+        android:showAsAction="ifRoom|withText"
+        android:actionProviderClass="android.widget.ShareActionProvider"
+    />
+    
+    <item android:id="@+id/menu_edit_favorite"
+        android:title="@string/op2Editar"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:showAsAction="ifRoom|withText"
+    />
+    
+    <item android:id="@+id/menu_delete_favorite"
+        android:title="@string/op3Borrar"
+        android:icon="@android:drawable/ic_delete"
+        android:showAsAction="ifRoom|withText"
+        android:actionViewClass="android.widget.ImageButton"
+        
+    />
+
+</menu>

@@ -47,14 +47,15 @@
             android:name="alex.mj.marvelencyclopedia.characters.CharacterSearchResultActivity"
             android:label="@string/title_activity_character" >
 
-            <!-- Parent activity meta-data to support 4.0 and lower 
+            <!--
+            Parent activity meta-data to support 4.0 and lower 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="alex.mj.marvelencyclopedia.characters.CharacterSeacherActivity" />
-                -->
+            -->
         </activity>
         <activity
-            android:name="alex.mj.marvelencyclopedia.characters.CharacterFavoritesActivity"
+            android:name="alex.mj.marvelencyclopedia.characters.CharacterFavoritesListActivity"
             android:label="@string/title_activity_character" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -71,6 +72,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="alex.mj.marvelencyclopedia.MarvelEncyclopediaListActivity" />
         </activity>
+        
+
+        <provider
+            android:name="alex.mj.marvelencyclopedia.characters.data.CharacterFavoritesProvider"
+            android:authorities="alex.mj.marvelencyclopedia.characters"
+            android:exported="true"
+            android:grantUriPermissions="true"
+            android:multiprocess="true" />
     </application>
 
 </manifest>

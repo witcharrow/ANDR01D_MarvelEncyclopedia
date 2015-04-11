@@ -124,7 +124,7 @@ public class CharacterActivity extends Activity {
 					intent = new Intent(getBaseContext(),CharacterSeacherActivity.class);  
 					break;
 				case 2:
-					intent = new Intent(getBaseContext(),CharacterFavoritesActivity.class);  
+					intent = new Intent(getBaseContext(),CharacterFavoritesListActivity.class);  
 					break;				
 				}				
 				// ##Lanzamos la Activity con el Intent creado.

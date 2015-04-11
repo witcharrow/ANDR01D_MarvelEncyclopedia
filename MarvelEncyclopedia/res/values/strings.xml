@@ -19,7 +19,16 @@
 <!-- CHARACTER MENU -->
 	<string name="character_searcher">CHARACTER SEARCHER</string>
 	<string name="character_favorites">MY FAVORITE CHARACTERS</string>
+	<string name="menu_share_favorite">SHARE FAVORITE</string>
 	
+<!-- MENU LAYOUT -->
+	<string name="menu_new_favorite">NEW FAVORITE</string>
+	<string name="op1Compartir">SHARE</string>
+	<string name="op2Editar">EDIT</string>
+	<string name="op3Borrar">DELETE</string>
+	<string name="menuContx">OPTIONS</string>
+	<string name="send_to">SEND TO YOUR FRIEND&#8230;</string>
+		
 <!-- NAVIGATION DRAWER STRINGS -->
     <string-array name="character_menu_options">
         <item>PICTURE</item>
